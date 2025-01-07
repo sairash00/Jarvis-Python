@@ -1,6 +1,7 @@
 import speech_recognition as sr
 from webChecker import check_website_availability
 from speak import speak
+from searchMusic import search_music
 
 r = sr.Recognizer()
 
@@ -10,6 +11,7 @@ def listen_for_wake_word():
         audio = r.listen(source)
         try:
             text = r.recognize_google(audio).lower()
+            print("you said", text)
             return text
         except sr.UnknownValueError:
             return ""
@@ -42,4 +44,9 @@ if __name__ == "__main__":
             if "open" in command:
                 word = command.split()[1]
                 check_website_availability(word)
+            elif "play" in command:
+                word = command.split()
+                music_name = " ".join(word[1:])
+                search_music(music_name)
+
                 
