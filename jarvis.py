@@ -2,6 +2,9 @@ import speech_recognition as sr
 from webChecker import check_website_availability
 from speak import speak
 from searchMusic import search_music
+from playPause import play_pause_audio
+from getNews import getNews
+from openSystemApps import openSystemApps
 
 r = sr.Recognizer()
 
@@ -21,7 +24,7 @@ def listen_for_wake_word():
 
 def listen_for_command():
     with sr.Microphone() as source:
-        speak("Ya")
+        speak("Yes")
         print("Listening for your command...")
         audio = r.listen(source)
         try:
@@ -37,16 +40,39 @@ def listen_for_command():
 
 # Main loop
 if __name__ == "__main__":
+    speak("Hi, I am jarvis")
     while True:
         wake_word = listen_for_wake_word()
         if "jarvis" in wake_word:
             command = listen_for_command()
-            if "open" in command:
+            if command.startswith("open"):
                 word = command.split()[1]
+                print(word)
                 check_website_availability(word)
-            elif "play" in command:
+
+            elif command.startswith("play"):
                 word = command.split()
                 music_name = " ".join(word[1:])
                 search_music(music_name)
+
+            elif command.startswith("audio"):
+                speak("okay")
+                play_pause_audio()
+
+            elif command.startswith("news"):
+                country = command.split()[1]
+                speak("Searching...")
+                getNews(country)
+
+            elif command.startswith("system"):
+                speak("Processing...")
+                word = command.split()
+                app_name = " ".join(word[1:])
+                openSystemApps(app_name)
+
+            elif command.startswith("deactivate"):
+                speak("bye, see you soon!")
+                break
+
 
                 
