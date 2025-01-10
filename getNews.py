@@ -1,10 +1,12 @@
 import requests as req
 from speak import speak
 from datetime import datetime, timedelta
-
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-key = "fefd0ce0f389478a9dd2c6a8084d3cdf"
+key = os.getenv("API_KEY_NEWS")
 def getNews(topic):
     print("fetching the news")
     data = req.get(f"https://newsapi.org/v2/everything?q={topic}&from={yesterday}&sortBy=publishedAt&language=en&apiKey={key}")
