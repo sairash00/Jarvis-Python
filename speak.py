@@ -4,7 +4,7 @@ engine = ttx.init()
 voices = engine.getProperty('voices')
     
 engine.setProperty('voice', voices[1].id)  
-engine.setProperty('rate', 150) 
+engine.setProperty('rate', 140) 
 engine.setProperty('volume', 5)  
 
 def speak(command):

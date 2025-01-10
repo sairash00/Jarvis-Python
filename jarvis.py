@@ -5,6 +5,9 @@ from searchMusic import search_music
 from playPause import play_pause_audio
 from getNews import getNews
 from openSystemApps import openSystemApps
+from getJokes import tell_joke
+from getWeather import get_weather
+from wordMeaning import get_meaning
 
 r = sr.Recognizer()
 
@@ -70,8 +73,21 @@ if __name__ == "__main__":
                 app_name = " ".join(word[1:])
                 openSystemApps(app_name)
 
+            elif "tell me a joke" in command:
+                speak("Got it!")
+                tell_joke()
+
+            elif command.startswith("weather"):
+                speak("getting weather info")
+                place = command.split()[1]
+                get_weather(place)
+
+            elif command.startswith("meaning") and "meaning of" in command:
+                word = command.split()[2]
+                get_meaning(word)
+
             elif command.startswith("deactivate"):
-                speak("bye, see you soon!")
+                speak("Byee, see you soon!")
                 break
 
 
