@@ -8,6 +8,7 @@ from openSystemApps import openSystemApps
 from getJokes import tell_joke
 from getWeather import get_weather
 from wordMeaning import get_meaning
+from textGeneration import get_answer
 
 r = sr.Recognizer()
 
@@ -89,6 +90,10 @@ if __name__ == "__main__":
             elif command.startswith("deactivate"):
                 speak("Byee, see you soon!")
                 break
+            else:
+                print("Going for AI")
+                speak("Just a moment")
+                output = get_answer({"inputs": f"{command}.",})
 
 
                 
