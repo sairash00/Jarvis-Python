@@ -1,7 +1,7 @@
 ## Jarvis Virtual Assistant - Command Guide
 
 Welcome to your personal virtual assistant, Jarvis! Below are the commands and how to use them.
-You can also download and use it yourself from the Jarvis.ext file in dist folder.
+You can also download and use it yourself from the Jarvis.exe file in dist folder.
 
 ### 1. Wake Jarvis
 **Command:** "Jarvis"
