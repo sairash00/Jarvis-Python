@@ -9,6 +9,10 @@ from getJokes import tell_joke
 from getWeather import get_weather
 from wordMeaning import get_meaning
 from textGeneration import get_answer
+from nextPrevious import nextMedia
+from nextPrevious import previous
+from volumeControl import volumeUp
+from volumeControl import volumeDown
 
 r = sr.Recognizer()
 
@@ -34,6 +38,7 @@ def listen_for_command():
         try:
             # Recognize speech using Google Web Speech API
             text = r.recognize_google(audio)
+            print(f"you said: {text}")
             return text
         except sr.UnknownValueError:
             speak("Sorry, I could not understand what you said.")
@@ -78,6 +83,16 @@ if __name__ == "__main__":
                 speak("Got it!")
                 tell_joke()
 
+            elif "volume increase" in command:
+                speak("Okay, increasing volume")
+                percent = int(command.split()[2])
+                volumeUp(percent)
+
+            elif "volume down" in command:
+                speak("Okay, decreasing volume")
+                percent = int(command.split()[2])
+                volumeDown(percent)
+
             elif command.startswith("weather"):
                 speak("getting weather info")
                 place = command.split()[1]
@@ -90,10 +105,13 @@ if __name__ == "__main__":
             elif command.startswith("deactivate"):
                 speak("Byee, see you soon!")
                 break
-            else:
-                print("Going for AI")
-                speak("Just a moment")
-                output = get_answer({"inputs": f"{command}.",})
-
-
+            elif command.startswith("generate"):
+                    private_command = command.split()[1:]
+                    print(private_command)
+                    print("Going for AI")
+                    speak("Just a moment")
+                    output = get_answer({"inputs": f"{command}.",})
                 
+
+
+                 
